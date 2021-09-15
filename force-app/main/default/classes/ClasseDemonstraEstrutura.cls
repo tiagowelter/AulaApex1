@@ -102,4 +102,76 @@ public with sharing class ClasseDemonstraEstrutura {
 
     }
 
+    public static List<Account> returnAccountWithoutPriority(){
+
+        List<Account> acoountList = new List<Account>([SELECT Id, Name, CustomerPriority__c FROM Account WHERE CustomerPriority__c = '' ORDER BY Name]);
+
+        system.debug('acoountList '+acoountList);
+
+        return acoountList;
+
+    }
+
+    //Debug : ClasseDemonstraEstrutura.getTotalGrossByStage('Qualification');
+    public static Decimal getTotalGrossByStage(String stageNameStr){
+
+        //Monta uma lista e depois dentro da mesma executa uma query com uma variável do Apex agregada: stageNameStr
+        List<Opportunity> opportunitiesList = new List<Opportunity>([SELECT GrossTotal__c, Amount FROM Opportunity WHERE StageName = :stageNameStr]);
+
+        //List > Add
+        //Map > Put
+
+        system.debug('opportunitiesList '+opportunitiesList);
+
+        //Define a variavel de retorno
+        Decimal totalDecimal = 0;
+        Decimal totalGrossDecimal = 0;
+
+        //Aqui percorremos a lista opportunitiesList e aliemntamos o valor da variável totalDecimal com o valor do o.Amount
+        for(Opportunity o : opportunitiesList){
+            //totalDecimal =  totalDecimal + o.Amount;
+            totalDecimal +=  o.Amount;
+            totalGrossDecimal += o.GrossTotal__c;
+        }
+
+        system.debug('totalDecimal '+totalDecimal);
+        system.debug('totalGrossDecimal '+totalGrossDecimal);
+        return totalDecimal;
+    }
+
+    //DESAFIO : Criar uma classe que receba o nome de uma oportunidade, faça uma consulta e retorne os dados da mesma.
+    //Forma 1 
+    //ClasseDemonstraEstrutura.returnOpportunityByName('Burlington Textiles Weaving Plant Generator');
+    public static List<Opportunity> returnOpportunityByName(String nameStr){
+
+        List<Opportunity> opportunitiesList = new List<Opportunity>([SELECT Id, Name FROM Opportunity WHERE Name = :nameStr ]);
+
+        system.debug('opportunitiesList '+opportunitiesList);
+        return opportunitiesList;
+
+    }
+
+    //Forma 2
+    //ClasseDemonstraEstrutura.returnOpportunityByName2('Burlington Textiles Weaving Plant Generator');
+    public static Opportunity returnOpportunityByName2(String nameStr){
+
+        Opportunity opportunityObj = [SELECT Id, Name FROM Opportunity WHERE Name = :nameStr LIMIT 1];
+        system.debug('opportunityObj '+opportunityObj);
+        return opportunityObj;
+
+    }
+
+    //DESAFIO : Criar uma classe que retorne a quantidade de contas cadastradas no sistema.
+    //ClasseDemonstraEstrutura.quantityAccounts();
+    public static Integer quantityAccounts(){
+
+        List<Account> accountList = new List<Account>([SELECT Id FROM Account]);
+
+        system.debug('accountList '+ accountList.size());
+
+        return accountList.size();
+
+    }
+    
+    //DESAFIO: Criar uma classe que receba um email e verifique se existe um lead, retornar true ou false;
 }
