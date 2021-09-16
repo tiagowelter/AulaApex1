@@ -7,7 +7,7 @@ trigger AccountTrigger on Account (after insert,after update){
     if(Trigger.isInsert){
 
         List<Task> taskList = new List<Task>();
-
+        
         for(Account a : Trigger.new){
 
             Task taskObj = new Task();
@@ -18,7 +18,7 @@ trigger AccountTrigger on Account (after insert,after update){
 
         }
 
-        insert taskList;
+        
 
     }
 

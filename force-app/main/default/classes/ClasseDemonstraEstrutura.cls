@@ -1,5 +1,5 @@
 public with sharing class ClasseDemonstraEstrutura {
-
+    
     public static Boolean nomeDoMetodo(){
 
         //Del=claro as variaveis que pertencem ao metodo
@@ -117,6 +117,7 @@ public with sharing class ClasseDemonstraEstrutura {
 
         //Monta uma lista e depois dentro da mesma executa uma query com uma variável do Apex agregada: stageNameStr
         List<Opportunity> opportunitiesList = new List<Opportunity>([SELECT GrossTotal__c, Amount FROM Opportunity WHERE StageName = :stageNameStr]);
+        
 
         //List > Add
         //Map > Put
