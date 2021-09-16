@@ -174,4 +174,94 @@ public with sharing class ClasseDemonstraEstrutura {
     }
     
     //DESAFIO: Criar uma classe que receba um email e verifique se existe um lead, retornar true ou false;
+    //ClasseDemonstraEstrutura.verifyLeadByEmail('bblair@abankingco.com');
+    //Forma 1
+    public static Boolean verifyLeadByEmail(String emailStr){
+
+        List<Lead> leadList = new List<Lead>([SELECT Id FROM Lead WHERE Email = :emailStr]);
+        Integer numberLeadsByEmailInt = leadList.size();
+
+        system.debug('numberLeadsByEmailInt ' + numberLeadsByEmailInt);
+
+        return numberLeadsByEmailInt > 0 ? true : false;
+
+    }
+
+    //Forma 2
+    public static Boolean verifyLeadByEmail2(String emailStr){
+
+        Lead leadObj = [SELECT Id FROM Lead WHERE Email = :emailStr LIMIT 1];
+
+        system.debug('leadObj '+leadObj);
+
+        return leadObj != null ? true : false; 
+
+    }
+
+    //ClasseDemonstraEstrutura.demonstrationDML();
+    public static void demonstrationDML(){
+
+        Opportunity oppObj = new Opportunity();
+        oppObj.Name = 'Nome da oportunidade Exemplo 2';
+        oppObj.StageName = 'Prospecting';
+        oppObj.CloseDate = system.Today();
+        insert oppObj;
+
+        oppObj.StageName = 'Qualification';
+        update oppObj;
+
+    }
+
+    public static void demonstrationDML2(){
+
+        List<Opportunity> oppToInsertList = new List<Opportunity>();
+
+        for(Integer count1 = 0 ; count1 < 10; count1++ ){
+        
+            Opportunity oppObj = new Opportunity();
+            oppObj.Name = 'Oportunidade Exemplo FOR '+count1;
+            oppObj.StageName = 'Prospecting';
+            oppObj.CloseDate = system.Today();
+            oppToInsertList.add(oppObj);
+        
+        }
+
+        //Aqui a lista tera 10 registros
+        insert oppToInsertList;
+    
+    }
+
+    //DESAFIO: Inserir no banco uma conta com o nome de vocês
+    //ClasseDemonstraEstrutura.addAccount();
+    public static void addAccount(){
+
+        Account accObj = new Account();
+        accObj.Name = 'Priscila Santana';
+        accObj.Phone = '11115555666';
+        insert accObj;
+
+    }
+
+    //DESAFIO : Inserir 10 leads com o nome sendo uma contagem (Ex: Lead 1, Lead 2, etc), e quando o lead for o número 5 esse lead deve ter o nome de vocês e os demais seguem o padrão proposto
+    //ClasseDemonstraEstrutura.addLead();
+    public static void addLead(){
+
+        List<Lead> leadList = new List<Lead>();
+
+        for(Integer i = 0; i < 10; i++){
+
+            Lead leadObj = new Lead();
+            leadObj.LastName = i == 5 ? 'Tiago Welter' : 'LastName '+i;
+            leadObj.Status = 'Working - Contacted';
+            leadObj.Company = i == 5 ? 'Tiago Welter Company' : 'Company '+i;
+
+            leadList.add(leadObj);
+
+        }
+
+        insert leadList;
+
+    }
+
+
 }
