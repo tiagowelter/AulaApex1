@@ -52,14 +52,16 @@ public with sharing class ClasseDemonstraEstrutura {
         }
 
         //While
-        String nameOpportunity;
+        String nameOpportunity = null;
 
-        while(nameOpportunity == null){
-            count = 1;
-            for(Opportunity o : opportunityList){
-                nameOpportunity = o.Name;
-                system.debug('Nome da oportunidade no While '+count+' : '+o.Name);
-                count++;
+        if(opportunityList.size() > 0){
+            while(nameOpportunity == null){
+                count = 1;
+                for(Opportunity o : opportunityList){
+                    nameOpportunity = o.Name;
+                    system.debug('Nome da oportunidade no While '+count+' : '+o.Name);
+                    count++;
+                }
             }
         }
 

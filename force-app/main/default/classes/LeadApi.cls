@@ -17,6 +17,8 @@ global with sharing class LeadApi {
         restResult.responseBody = Blob.valueOf(JSON.serializePretty(leadList));
         restResult.StatusCode = 200;
 
+        //return leadList;
+
     }
 
     @HttpPost //anotação de contexto da API
