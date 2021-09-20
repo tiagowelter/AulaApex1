@@ -193,7 +193,9 @@ public with sharing class ClasseDemonstraEstrutura {
     //Forma 2
     public static Boolean verifyLeadByEmail2(String emailStr){
 
-        Lead leadObj = [SELECT Id FROM Lead WHERE Email = :emailStr LIMIT 1];
+        List<Lead> leadList = new List<Lead>([SELECT Id FROM Lead WHERE Email = :emailStr LIMIT 1]);
+
+        Lead leadObj = leadList.size() > 0 ? leadList[0] : null;
 
         system.debug('leadObj '+leadObj);
 
@@ -236,12 +238,14 @@ public with sharing class ClasseDemonstraEstrutura {
 
     //DESAFIO: Inserir no banco uma conta com o nome de vocês
     //ClasseDemonstraEstrutura.addAccount();
-    public static void addAccount(){
+    public static Account addAccount(){
 
         Account accObj = new Account();
         accObj.Name = 'Priscila Santana';
         accObj.Phone = '11115555666';
         insert accObj;
+
+        return accObj;
 
     }
 
