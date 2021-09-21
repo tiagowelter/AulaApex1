@@ -1,7 +1,8 @@
 import { LightningElement, track } from 'lwc';
+import {NavigationMixin} from 'lightning/navigation';
 import findOpportunities from '@salesforce/apex/OpportunitySummaryController.findOpportunities';
 
-export default class OderSummary extends LightningElement {
+export default class OderSummary extends NavigationMixin(LightningElement) {
 
     @track opportunities = [];
 
@@ -23,6 +24,15 @@ export default class OderSummary extends LightningElement {
 
         });
 
+    }
+
+    executeNewSale(){
+        this[NavigationMixin.Navigate]({
+            type : 'standard__navItemPage',
+            attributes: {
+                apiName : 'Carrinho'
+            }
+        });
     }
 
 }
