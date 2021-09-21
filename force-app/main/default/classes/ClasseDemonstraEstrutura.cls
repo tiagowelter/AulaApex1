@@ -2,7 +2,7 @@ public with sharing class ClasseDemonstraEstrutura {
     
     public static Boolean nomeDoMetodo(){
 
-        //Del=claro as variaveis que pertencem ao metodo
+        //Declaro as variaveis que pertencem ao metodo
         Boolean primeiraVariavelBooleana = true;
         String exemploString = 'texto';
         Decimal decimalDeExemplo = 50.01;
