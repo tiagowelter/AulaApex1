@@ -30,7 +30,7 @@ export default class OderSummary extends NavigationMixin(LightningElement) {
         this[NavigationMixin.Navigate]({
             type : 'standard__navItemPage',
             attributes: {
-                apiName : 'Carrinho_2'
+                apiName : 'Carrinho'
             }
         });
     }

@@ -21,7 +21,7 @@ export default class SelectAccount extends LightningElement {
     }
 
     /*
-    Aqui é uma outra forma de chamar o método
+    //Aqui é uma outra forma de chamar o método
     connectedCallback(){
         getAccounts({}).then( (response) => {
             console.log('response',response);
