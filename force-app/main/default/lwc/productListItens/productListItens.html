@@ -1,28 +1,25 @@
 <template>
-
     <template if:true={getAccountId}>
-
         <div class="slds-card slds-p-around_x-small">
-
             <template if:true={produtosObj.data}>
-                Entrou no if
                 <div class="c-container">
-
                     <lightning-layout multiple-rows>
-
                         <template for:each={produtosObj.data.produtos} for:item="p">
-                            <br key={p.Id}/>
-                            {p.Name}
+                            <!--<br key={p.Id}/>-->
+                            <lightning-layout-item 
+                                    size="4"
+                                    key={p.Id}
+                                    padding="arround-small">
+                                <c-product-card
+                                    product={p}
+                                    class="slds-m-arround_x-small"
+                                ></c-product-card>                                    
+                            </lightning-layout-item>
+
                         </template>
-
                     </lightning-layout>
-
                 </div>
-
             </template>
-
         </div>
-    
     </template>
-    
 </template>
