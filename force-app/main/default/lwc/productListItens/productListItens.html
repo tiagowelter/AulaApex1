@@ -5,7 +5,6 @@
                 <div class="c-container">
                     <lightning-layout multiple-rows>
                         <template for:each={produtosObj.data.produtos} for:item="p">
-                            <!--<br key={p.Id}/>-->
                             <lightning-layout-item 
                                     size="4"
                                     key={p.Id}
@@ -13,9 +12,8 @@
                                 <c-product-card
                                     product={p}
                                     class="slds-m-arround_x-small"
-                                ></c-product-card>                                    
+                                ></c-product-card>
                             </lightning-layout-item>
-
                         </template>
                     </lightning-layout>
                 </div>
