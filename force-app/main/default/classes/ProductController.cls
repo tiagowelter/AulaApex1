@@ -5,15 +5,15 @@ public with sharing class ProductController {
     //Buscar pelo nome dos produtos procurados
     //retornar a pagina que estamos
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static PageResultWrapper getProducts(){
 
         Integer pageSizeInt = 10;
 
-        PageResultWrapper result = new PageResultWrapper();
-        result.tamanhoDaPagina = pageSizeInt;
-        result.numeroDaPagina = 0;
-        result.totalItensPesquisa = Database.countQuery('SELECT count() FROM Product2');
+        PageResultWrapper result    = new PageResultWrapper();
+        result.tamanhoDaPagina      = pageSizeInt;
+        result.numeroDaPagina       = 0;
+        result.totalItensPesquisa   = Database.countQuery('SELECT count() FROM Product2');
         result.produtos = Database.query('SELECT Id, Name FROM Product2');
 
         system.debug('result '+result);

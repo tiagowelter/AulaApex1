@@ -9,19 +9,19 @@ export default class ProductListItens extends LightningElement {
 
     @track accountId = null;
 
-    //@wire(getProducts, {}) produtos;
-    @track produtos = [];
+    @wire(getProducts, {}) produtosObj;
+    //@track produtos = [];
 
     connectedCallback(){
         
-        getProducts({}).then( (response) => {
+        /*getProducts({}).then( (response) => {
             console.log('response',response.produtos);
             this.produtos = response.produtos;
         }).catch( (erro) => {
             console.log('erro',erro);
-        });
+        });*/
         
-        console.log('produtos', this.produtos);
+        console.log('produtos', this.produtosObj);
         registerListener('selectedAccount', this.getAccount, this);
     }    
 

@@ -4,18 +4,16 @@
 
         <div class="slds-card slds-p-around_x-small">
 
-            <template if:true={produtos}>
-
+            <template if:true={produtosObj.data}>
+                Entrou no if
                 <div class="c-container">
 
                     <lightning-layout multiple-rows>
 
-                        <template for:each={produtos} for:item="p">
+                        <template for:each={produtosObj.data.produtos} for:item="p">
                             <br key={p.Id}/>
                             {p.Name}
-
                         </template>
-
 
                     </lightning-layout>
 
