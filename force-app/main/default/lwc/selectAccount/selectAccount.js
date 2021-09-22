@@ -37,5 +37,6 @@ export default class SelectAccount extends LightningElement {
         console.log('O id da conta selecionada é', idAccount);
         fireEvent(this.pageRef, 'selectedAccount', idAccount);        
     }
+    
 
 }

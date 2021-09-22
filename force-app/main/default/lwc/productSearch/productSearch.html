@@ -1,7 +1,11 @@
 <template>
-    <lightning-card title="Buscar Produto" icon-name="standard:calibration">
-        <div class="slds-m-horizontal_medium">
-            <lightning-input label="Buscar pro nome do produto" type="search"></lightning-input>
-        </div>
-    </lightning-card>
+
+    <template if:true={getAccountId}>
+        <lightning-card title="Buscar Produto" icon-name="standard:calibration">
+            <div class="slds-m-horizontal_medium">
+                <lightning-input label="Buscar pro nome do produto" type="search"></lightning-input>
+            </div>
+        </lightning-card>
+    </template>
+
 </template>
