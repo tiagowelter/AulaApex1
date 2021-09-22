@@ -15,7 +15,9 @@ public with sharing class ProductController {
         result.numeroDaPagina = 0;
         result.totalItensPesquisa = Database.countQuery('SELECT count() FROM Product2');
         result.produtos = Database.query('SELECT Id, Name FROM Product2');
-        
+
+        system.debug('result '+result);
+
         return result;
 
     }

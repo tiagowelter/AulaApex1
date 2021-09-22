@@ -1,7 +1,29 @@
 <template>
 
     <template if:true={getAccountId}>
-    
+
+        <div class="slds-card slds-p-around_x-small">
+
+            <template if:true={produtos}>
+
+                <div class="c-container">
+
+                    <lightning-layout multiple-rows>
+
+                        <template for:each={produtos} for:item="p">
+                            <br key={p.Id}/>
+                            {p.Name}
+
+                        </template>
+
+
+                    </lightning-layout>
+
+                </div>
+
+            </template>
+
+        </div>
     
     </template>
     
