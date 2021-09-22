@@ -1,6 +1,7 @@
 import { LightningElement, track, wire } from 'lwc';
 import {CurrentPageReference} from 'lightning/navigation';
 import getAccounts from '@salesforce/apex/AccountController.getAccounts';
+import { fireEvent } from 'c/pubsub';
 
 export default class SelectAccount extends LightningElement {
 
@@ -30,5 +31,11 @@ export default class SelectAccount extends LightningElement {
             console.log('erro',erro);
         });
     }*/
+
+    handleAccount(event){
+        let idAccount = event.detail.value;
+        console.log('O id da conta selecionada é', idAccount);
+        fireEvent(this.pageRef, 'selectedAccount', idAccount);        
+    }
 
 }
