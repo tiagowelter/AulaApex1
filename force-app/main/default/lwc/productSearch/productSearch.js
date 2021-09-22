@@ -5,6 +5,7 @@ import { fireEvent, registerListener } from 'c/pubsub'; //carrego os metodos do 
 export default class ProductSearch extends LightningElement {
 
     @track accountId = null;
+    @track filter = null;
 
     @wire(CurrentPageReference) pageRef; //carrego as informações da página
 
@@ -22,6 +23,15 @@ export default class ProductSearch extends LightningElement {
 
     get getAccountId(){
         return this.accountId;
-    }    
+    }
+    
+    handleSearch(event){
+        this.filter = event.target.value;
+        this.fireFilterProds();
+    }
+
+    fireFilterProds(){
+        fireEvent(this.pageRef, 'filterChange', this.filter);
+    }
 
 }
