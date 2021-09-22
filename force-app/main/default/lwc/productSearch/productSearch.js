@@ -31,7 +31,12 @@ export default class ProductSearch extends LightningElement {
     }
 
     fireFilterProds(){
-        fireEvent(this.pageRef, 'filterChange', this.filter);
+        console.log('esta enviando a busca',this.filter );
+    
+        this.delayTimeout = setTimeout(() => {
+            fireEvent(this.pageRef, 'filterChangeSearch', this.filter);
+        }, 350);    
+    
     }
 
 }

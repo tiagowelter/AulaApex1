@@ -8,8 +8,9 @@ export default class ProductListItens extends LightningElement {
     @wire(CurrentPageReference) pageRef;
 
     @track accountId = null;
+    @track filter = null;
 
-    @wire(getProducts, {}) produtosObj;
+    @wire(getProducts, {filter : '$filter'}) produtosObj;
     //@track produtos = [];
 
     connectedCallback(){
@@ -22,15 +23,22 @@ export default class ProductListItens extends LightningElement {
         });*/
         
         console.log('produtos', this.produtosObj);
+        registerListener('filterChangeSearch', this.getChangedValue, this);
         registerListener('selectedAccount', this.getAccount, this);
     }    
 
     getAccount(account){
+        console.log('esta buscando o account aqio list itens');
         this.accountId = account;
     }
 
     get getAccountId(){
         return this.accountId;
+    }
+
+    getChangedValue(param){
+        this.filter = param;
+        console.log('VALOR DA BUSCA', param);
     }
 
 }
