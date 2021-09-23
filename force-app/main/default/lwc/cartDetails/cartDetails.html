@@ -12,20 +12,51 @@
                     <th>Quantidade</th>
                 </tr>
 
-                <template for:each={_products} for:item="p">
+                <template for:each={_products} for:item="p" for:index="productPosition">
 
                     <tr key={p.Id}>
-                        <td>{p.nome}</td>
-                        <td>{p.preco}</td>
-                        <td>{p.quantity}</td>
+                        <td>
+                            <p class="slds-text-title">{p.nome}</p>                                
+                        </td>
+                        <td style="padding-left: 10px;">
+                            <lightning-input
+                                type="currency"
+                                min="0"
+                                value={p.preco} 
+                                aria-rowindex={productPosition}
+                                class="slds-m-bottom_small slds-text-title" 
+                                onchange={handleProductPrice}  
+                            ></lightning-input>
+                        </td>
+                        <td style="padding-left: 10px; padding-right:10px">
+                            <lightning-input
+                                class="slds-m-bottom_small slds-text-title"
+                                type="number"
+                                min="1" 
+                                aria-rowindex={productPosition}
+                                value={p.quantity}></lightning-input>                            
+                        </td>
                     </tr>
 
                 </template>
 
             </table>
 
+            <template if:true={hasProducts}>
+                <div class=" slds-m-around_medium slds-p-top_medium slds-p-left_medium" style="text-align: right;">
+                    <b>Valor total: </b>
+                    <lightning-formatted-number
+                        format-style="currency"
+                        currency-code="BRL"
+                        value={amountTotal}
+                        maximum-fraction-digits="2"
+                    ></lightning-formatted-number>
+                </div>
+            </template>
+
         </lightning-card>
 
     </template>
+    <br><br><br>
     
 </template>

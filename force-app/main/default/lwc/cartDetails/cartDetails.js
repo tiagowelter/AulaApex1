@@ -8,6 +8,7 @@ export default class CartDetails extends LightningElement {
     @wire(CurrentPageReference) pageRef;
     @track accountId = null;
     @track _products = [];
+    @track amountTotal = 0;
 
     connectedCallback(){
         registerListener('productSelected', this.handleProducSelected, this);
@@ -40,7 +41,7 @@ export default class CartDetails extends LightningElement {
             //SOMEI A QUANTIDADE EM UMA LINHA QUE EXISTIA
             this.getProductFromList(newProduct).quantity++;
         }
-
+        this.calculateTotal();
 
     }
 
@@ -51,6 +52,20 @@ export default class CartDetails extends LightningElement {
 
     getProductFromList(product){
         return this._products.find( prod => prod.id === product.id);
+    }
+
+    get hasProducts(){
+        return this._products.length > 0;
+    }
+
+    handleProductPrice(event){
+        let selectedItem = event.currentTarget.ariaRowIndex;
+        this._products[selectedItem].preco = event.currentTarget.value;
+        this.calculateTotal();
+    }
+
+    calculateTotal(){
+        this.amountTotal = this._products.reduce( (total, prod) => ( total += prod.quantity * prod.preco), 0 );
     }
 
 }
