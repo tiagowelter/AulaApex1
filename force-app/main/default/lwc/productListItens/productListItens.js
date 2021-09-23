@@ -43,6 +43,7 @@ export default class ProductListItens extends LightningElement {
 
     handleProductSelected(event){
         console.log('capturou o evento pelo componente pai');
-    }    
+        fireEvent(this.pageRef, 'productSelected', event.detail);
+    }
 
 }
