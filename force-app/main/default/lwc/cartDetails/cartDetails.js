@@ -64,6 +64,12 @@ export default class CartDetails extends LightningElement {
         this.calculateTotal();
     }
 
+    handleProductQuantity(event){
+        let selectedIten = event.currentTarget.ariaRowIndex;
+        this._products[selectedIten].quantity = event.currentTarget.value;
+        this.calculateTotal();
+    }
+
     calculateTotal(){
         this.amountTotal = this._products.reduce( (total, prod) => ( total += prod.quantity * prod.preco), 0 );
     }

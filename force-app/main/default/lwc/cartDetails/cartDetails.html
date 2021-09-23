@@ -8,7 +8,7 @@
 
                 <tr>
                     <th>Produto</th>
-                    <th>Preço</th>
+                    <th>Preço Unitário</th>
                     <th>Quantidade</th>
                 </tr>
 
@@ -34,7 +34,8 @@
                                 type="number"
                                 min="1" 
                                 aria-rowindex={productPosition}
-                                value={p.quantity}></lightning-input>                            
+                                value={p.quantity}
+                                onchange={handleProductQuantity}></lightning-input>                            
                         </td>
                     </tr>
 
