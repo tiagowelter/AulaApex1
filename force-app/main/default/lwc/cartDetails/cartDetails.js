@@ -29,10 +29,28 @@ export default class CartDetails extends LightningElement {
 
         let newProduct = {...JSON.parse(product)};
 
-        console.log('tratou o json do produto produto: ', newProduct);
+        //vamos verificar se existe o produto na lista
+        //se não existir vamos adicionar
+        //se existir vamos somar uma quantidade
+        //console.log('hasProductInList(newProduct)', hasProductInList(newProduct));
+        if( !this.hasProductInList(newProduct) ){
+            //ADICIONEI UMA NOVA LINHA
+            this._products.push( {...newProduct, quantity: 1} );
+        }else{
+            //SOMEI A QUANTIDADE EM UMA LINHA QUE EXISTIA
+            this.getProductFromList(newProduct).quantity++;
+        }
 
-        this._products.push( {...newProduct, quantity: 1} );
 
+    }
+
+    hasProductInList(product){
+        console.log('entrou aqui');
+        return this._products.filter( (prodParam) => prodParam.id === product.id ).length > 0;
+    }
+
+    getProductFromList(product){
+        return this._products.find( prod => prod.id === product.id);
     }
 
 }
