@@ -9,10 +9,13 @@
                                     size="4"
                                     key={p.Id}
                                     padding="arround-small">
+                                
                                 <c-product-card
                                     product={p}
+                                    onselected={handleProductSelected}
                                     class="slds-m-arround_x-small"
                                 ></c-product-card>
+
                             </lightning-layout-item>
                         </template>
                     </lightning-layout>

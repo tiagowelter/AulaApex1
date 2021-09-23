@@ -41,4 +41,8 @@ export default class ProductListItens extends LightningElement {
         console.log('VALOR DA BUSCA', param);
     }
 
+    handleProductSelected(event){
+        console.log('capturou o evento pelo componente pai');
+    }    
+
 }

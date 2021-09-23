@@ -18,4 +18,11 @@ export default class ProductCard extends LightningElement {
 
     }
 
+    handleProductSelected(){
+        const productSelected = new CustomEvent("selected", {
+            detail: JSON.stringify(this._product),
+        })
+        this.dispatchEvent(productSelected);    
+    }
+
 }
