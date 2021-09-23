@@ -7,6 +7,7 @@ export default class CartDetails extends LightningElement {
 
     @wire(CurrentPageReference) pageRef;
     @track accountId = null;
+    @track _products = [];
 
     connectedCallback(){
         registerListener('productSelected', this.handleProducSelected, this);
@@ -22,8 +23,16 @@ export default class CartDetails extends LightningElement {
         return this.accountId;
     }
 
-    handleProducSelected(product){
+    handleProducSelected(product)
+    {
         console.log('pegou o seguinte produto: ', product);
+
+        let newProduct = {...JSON.parse(product)};
+
+        console.log('tratou o json do produto produto: ', newProduct);
+
+        this._products.push( {...newProduct, quantity: 1} );
+
     }
 
 }

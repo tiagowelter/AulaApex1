@@ -2,7 +2,29 @@
 
     <template if:true={getAccountId}>
         
-        Abriu o cartDetail
+        <lightning-card class="slds-p-top_medium slds-p-left_medium">
+
+            <table>
+
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                </tr>
+
+                <template for:each={_products} for:item="p">
+
+                    <tr key={p.Id}>
+                        <td>{p.nome}</td>
+                        <td>{p.preco}</td>
+                        <td>{p.quantity}</td>
+                    </tr>
+
+                </template>
+
+            </table>
+
+        </lightning-card>
 
     </template>
     
