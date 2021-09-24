@@ -81,7 +81,8 @@
 
             <template if:true={getOpenModal}>
 
-                <c-cart-confirmation></c-cart-confirmation>
+                <c-cart-confirmation
+                    oncancelconfirmation={handleCancelConfirmation}></c-cart-confirmation>
 
             </template>
 

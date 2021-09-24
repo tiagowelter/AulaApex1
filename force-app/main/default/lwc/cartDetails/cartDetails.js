@@ -96,4 +96,8 @@ export default class CartDetails extends LightningElement {
     get getOpenModal(){
         return this.isShowModal;
     }
+
+    handleCancelConfirmation(){
+        this.isShowModal = false;
+    }
 }
