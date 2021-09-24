@@ -6,6 +6,7 @@ export default class CartConfirmation extends NavigationMixin(LightningElement) 
     @api products;
     @api nameopp;
     @api dateopp;
+    @api amountopp;
 
     closeModal(){
         const cancelEvent = new CustomEvent( "cancelconfirmation", {

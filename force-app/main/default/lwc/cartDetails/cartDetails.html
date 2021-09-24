@@ -54,7 +54,7 @@
                     ></lightning-formatted-number>
                 </div>
 
-                <div class="slds-m-arround_medium slds-p-top_medium slds-p-left_medium">
+                <div class="slds-m-arround_medium slds-p-top_medium slds-p-left_medium" style="margin-bottom: 30px;">
 
                     <lightning-input
                         type="text"
@@ -85,8 +85,13 @@
                     oncancelconfirmation={handleCancelConfirmation}
                     products={_products}
                     nameopp={opportunityName}
-                    dateopp={opportunityDate}></c-cart-confirmation>
+                    dateopp={opportunityDate}
+                    amountopp={amountTotal}></c-cart-confirmation>
 
+            </template>
+
+            <template if:true={getErrorMessage}>
+                <c-error-message message={errorMessage}></c-error-message>
             </template>
 
         </lightning-card>

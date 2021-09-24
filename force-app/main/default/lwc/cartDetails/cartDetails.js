@@ -12,6 +12,7 @@ export default class CartDetails extends LightningElement {
     @track opportunityName = null;
     @track opportunityDate = null;
     @track isShowModal = false;
+    @track errorMessage = null;
 
     connectedCallback(){
         registerListener('productSelected', this.handleProducSelected, this);
@@ -83,10 +84,16 @@ export default class CartDetails extends LightningElement {
 
     handleOppDate(event){
         this.opportunityDate = event.currentTarget.value;
+
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth())+'-'+today.getDate();        
+        if(this.opportunityDate < date){
+            this.errorMessage = 'Data de fechamento não pode ser menor que a data atual.';
+        }
     }
 
     get getIsEnabledSave(){
-        return this.opportunityName != null && this.opportunityDate != null;
+        return this.opportunityName != null && this.opportunityDate != null && this.errorMessage == null;
     }
 
     openModal(){
@@ -99,5 +106,9 @@ export default class CartDetails extends LightningElement {
 
     handleCancelConfirmation(){
         this.isShowModal = false;
+    }
+
+    get getErrorMessage(){
+        return this.errorMessage != null;
     }
 }

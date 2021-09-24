@@ -36,13 +36,23 @@
                     </template>
 
                 </table>
+                <br>
+                <div class=" slds-m-around_medium slds-p-top_medium slds-p-left_medium" style="text-align: right;">
+                    <b>Valor total: </b>
+                    <lightning-formatted-number
+                        format-style="currency"
+                        currency-code="BRL"
+                        value={amountopp}
+                        maximum-fraction-digits="2"
+                    ></lightning-formatted-number>
+                </div>                
                 
 
             </div>
             <!-- Modal/Popup Box LWC footer starts here -->
             <footer class="slds-modal__footer">
-                <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancelar">Cancel</button>
-                <button class="slds-button slds-button_brand" onclick={submitDetails} title="Sim processar">OK</button>
+                <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancelar">Cancelar</button>
+                <button class="slds-button slds-button_brand" onclick={submitDetails} title="Sim, Processar">Sim, Processar</button>
             </footer>
         </div>
     </section>
