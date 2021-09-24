@@ -15,7 +15,27 @@
             <!-- Modal/Popup Box LWC body starts here -->
             <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                
-                Abriu modal
+                <p><b>Nome da Oportunidade: </b>{nameopp}</p>
+                <p><b>Data de fechamento: </b>{dateopp}</p>
+
+                <br/>
+
+                <table style="margin-bottom: 30px;">
+                    <tr>
+                        <th>Produto</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                    </tr>
+
+                    <template for:each={products} for:item="p">
+                        <tr key={p.id}>
+                            <td>{p.nome}</td>
+                            <td>{p.preco}</td>
+                            <td>{p.quantity}</td>
+                        </tr>
+                    </template>
+
+                </table>
                 
 
             </div>

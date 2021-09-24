@@ -82,7 +82,10 @@
             <template if:true={getOpenModal}>
 
                 <c-cart-confirmation
-                    oncancelconfirmation={handleCancelConfirmation}></c-cart-confirmation>
+                    oncancelconfirmation={handleCancelConfirmation}
+                    products={_products}
+                    nameopp={opportunityName}
+                    dateopp={opportunityDate}></c-cart-confirmation>
 
             </template>
 
