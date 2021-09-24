@@ -9,6 +9,9 @@ export default class CartDetails extends LightningElement {
     @track accountId = null;
     @track _products = [];
     @track amountTotal = 0;
+    @track opportunityName = null;
+    @track opportunityDate = null;
+    @track isShowModal = false;
 
     connectedCallback(){
         registerListener('productSelected', this.handleProducSelected, this);
@@ -74,4 +77,23 @@ export default class CartDetails extends LightningElement {
         this.amountTotal = this._products.reduce( (total, prod) => ( total += prod.quantity * prod.preco), 0 );
     }
 
+    handleOppName(event){
+        this.opportunityName = event.currentTarget.value;
+    }
+
+    handleOppDate(event){
+        this.opportunityDate = event.currentTarget.value;
+    }
+
+    get getIsEnabledSave(){
+        return this.opportunityName != null && this.opportunityDate != null;
+    }
+
+    openModal(){
+        this.isShowModal = true;
+    }
+
+    get getOpenModal(){
+        return this.isShowModal;
+    }
 }

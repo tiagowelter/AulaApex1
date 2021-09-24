@@ -32,7 +32,7 @@
                             <lightning-input
                                 class="slds-m-bottom_small slds-text-title"
                                 type="number"
-                                min="1" 
+                                min="1"
                                 aria-rowindex={productPosition}
                                 value={p.quantity}
                                 onchange={handleProductQuantity}></lightning-input>                            
@@ -53,6 +53,36 @@
                         maximum-fraction-digits="2"
                     ></lightning-formatted-number>
                 </div>
+
+                <div class="slds-m-arround_medium slds-p-top_medium slds-p-left_medium">
+
+                    <lightning-input
+                        type="text"
+                        name="opportunityName"
+                        label="Nome da oportunidade de venda"
+                        onchange={handleOppName}></lightning-input>
+
+                    <lightning-input
+                        type="date"
+                        name="opportunityCloseDate"
+                        label="Informe a data de fechamento"
+                        onchange={handleOppDate}></lightning-input>    
+                </div>
+                <template if:true={getIsEnabledSave}>
+                    <div style="text-align: center;">
+                        <br><br>
+                        <lightning-button
+                            variant="brand"
+                            label="Salvar"
+                            onclick={openModal}></lightning-button>
+                    </div>
+                </template>
+            </template>
+
+            <template if:true={getOpenModal}>
+
+                <c-cart-confirmation></c-cart-confirmation>
+
             </template>
 
         </lightning-card>

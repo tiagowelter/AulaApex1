@@ -7,8 +7,9 @@ export default class SelectAccount extends LightningElement {
 
     @track accountsList = [];
 
-    @wire(CurrentPageReference) pageRef;
+    @wire(CurrentPageReference) pageRef; //carrega as informações da prória página
 
+    //carrega as informações do método do Apex
     @wire(getAccounts,{})
     wiredResponseAccount({
         error,
