@@ -85,11 +85,17 @@ export default class CartDetails extends LightningElement {
     handleOppDate(event){
         this.opportunityDate = event.currentTarget.value;
 
-        var today = new Date();
-        var date = today.getFullYear()+'-'+(today.getMonth())+'-'+today.getDate();        
-        if(this.opportunityDate < date){
+        /*var today = new Date();
+        var mount = (today.getMonth()+1).length < 10 ? '0'+(today.getMonth()+1) : (today.getMonth()+1);
+        var date = today.getFullYear()+'-'+mount+'-'+today.getDate();
+        console.log('date', date); 
+        console.log('opportunityDate', this.opportunityDate);        
+        if(String(this.opportunityDate) < String(date)){
+            console.log('é menor');   
             this.errorMessage = 'Data de fechamento não pode ser menor que a data atual.';
-        }
+        }else{
+            this.errorMessage = null;
+        }*/
     }
 
     get getIsEnabledSave(){
