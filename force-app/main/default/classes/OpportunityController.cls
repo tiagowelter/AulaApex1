@@ -6,6 +6,7 @@ public with sharing class OpportunityController {
 
         system.debug('produtos '+produtos);
 
+        //Posicionamos na lista de preço padrão, para conseguir relacionar com a oportunidade
         PriceBook2 pb2 = [SELECT Id FROM PriceBook2 WHERE IsStandard = true LIMIT 1];
 
         Opportunity opp = new Opportunity();
@@ -22,7 +23,10 @@ public with sharing class OpportunityController {
 
         List<OpportunityLineItem> itensList = new List<OpportunityLineItem>();
 
-        List<PriceBookEntry> pbeList = [SELECT Id, Product2Id FROM PriceBookEntry WHERE PriceBook2Id : pb2.Id];
+        //carregamos os produtos da lista de preço padrão
+        List<PriceBookEntry> pbeList = [SELECT Id, Product2Id FROM PriceBookEntry WHERE PriceBook2Id = :pb2.Id];
+
+        //utilizamos este MAP para guardar os produtos da lista, fizemos isso para não fazer uma query dentro do for
         map<Id,PriceBookEntry> pbeMap = new Map<Id, PriceBookEntry>();
         for(PriceBookEntry p : pbeList){
             pbeMap.put(p.Product2Id, p);
@@ -30,16 +34,20 @@ public with sharing class OpportunityController {
 
         for(OpportunityItemWrapper o : productsLis){
 
+            //buscamos no MAP o ID da lista de preço pelo ID do produto
             PriceBookEntry pbeItem = pbeMap.get(o.id);
 
-            OpportunityLineItem item = new OpportunityLineItem();
-            item.OpportunityId = opp.Id;
-            item.Product2Id    = o.id;
-            item.UnitPrice     = o.preco;
-            item.Quantity      = o.quantity;
-            item.PriceBookEntryId = pbeItem.Id;
-            
-            itensList.add(item);
+            //comentamos este if pois solucionamos o problema no ProductController
+            //if(pbeItem != null){
+                OpportunityLineItem item = new OpportunityLineItem();
+                item.OpportunityId = opp.Id;
+                item.Product2Id    = o.id;
+                item.UnitPrice     = o.preco;
+                item.Quantity      = o.quantity;
+                item.PriceBookEntryId = pbeItem.Id;
+                
+                itensList.add(item);
+            //}
 
         }
 

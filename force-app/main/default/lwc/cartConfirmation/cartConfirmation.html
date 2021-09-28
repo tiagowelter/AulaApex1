@@ -47,6 +47,10 @@
                     ></lightning-formatted-number>
                 </div>                
                 
+                <template if:true={getErrorMessage}>
+                    <br/><br/>
+                    <c-error-message message={errorMessage}></c-error-message>
+                </template>                
 
             </div>
             <!-- Modal/Popup Box LWC footer starts here -->
