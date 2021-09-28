@@ -2,6 +2,23 @@ import { LightningElement, track } from 'lwc';
 import {NavigationMixin} from 'lightning/navigation';
 import findOpportunities from '@salesforce/apex/OpportunitySummaryController.findOpportunities';
 
+const columns = [
+    {
+        label : 'Id da Oportunidade',
+        fieldName : 'Id',
+        type : 'text',
+        shortable : true,
+        hideDefaultActions : true
+    },
+    {
+        label : 'Nome da oportunidade',
+        fieldName : 'Name',
+        type : 'text',
+        shortable : true,
+        hideDefaultActions : true
+    }
+];
+
 export default class OderSummary extends NavigationMixin(LightningElement) {
 
     @track opportunities = [];
@@ -10,6 +27,9 @@ export default class OderSummary extends NavigationMixin(LightningElement) {
         this.findAllOpportunities();
     }
 
+    @track columns = columns;
+    @track data = [];
+
     findAllOpportunities(){
 
         findOpportunities({}).then( (response) => {
@@ -17,6 +37,7 @@ export default class OderSummary extends NavigationMixin(LightningElement) {
             console.log('response',response);
 
             this.opportunities = response;
+            this.data = response;
 
         }).catch( (erro) => {
 

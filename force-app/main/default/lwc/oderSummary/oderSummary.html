@@ -8,7 +8,7 @@
         </div>
         <br><br>
 
-        <table class="slds-table slds-table_bordered slds-table_striped">
+        <!--<table class="slds-table slds-table_bordered slds-table_striped">
 
             <tr>
                 <th><b>Id</b></th>
@@ -24,7 +24,17 @@
 
             </template>
 
-        </table>
+        </table>-->
+
+        <lightning-datatable
+            class="datatable"
+            data={data}
+            columns={columns}
+            key-field="Name"
+            hide-checkbox-column="true"
+            onsort={handleSort}
+            sorted-by={sortedField}
+            sorted-direction={sortDirection}></lightning-datatable>
 
     </lightning-card>
     
