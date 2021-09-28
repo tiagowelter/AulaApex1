@@ -9,8 +9,11 @@ export default class ProductListItens extends LightningElement {
 
     @track accountId = null;
     @track filter = null;
+    @track pageNumber = 1;
+    @track totalItemCount = 0;
+    @track pageSize;
 
-    @wire(getProducts, {filter : '$filter'}) produtosObj;
+    @wire(getProducts, {filter : '$filter', pageNumber : '$pageNumber'}) produtosObj;
     //@track produtos = [];
 
     connectedCallback(){
@@ -39,11 +42,20 @@ export default class ProductListItens extends LightningElement {
     getChangedValue(param){
         this.filter = param;
         console.log('VALOR DA BUSCA', param);
+        this.pageNumber = 1;
     }
 
     handleProductSelected(event){
         console.log('capturou o evento pelo componente pai');
         fireEvent(this.pageRef, 'productSelected', event.detail);
+    }
+
+    handlePreviousPage(){
+        this.pageNumber = this.pageNumber - 1;
+    }
+
+    handleNextPage(){
+        this.pageNumber = this.pageNumber + 1;
     }
 
 }

@@ -6,10 +6,11 @@ public with sharing class ProductController {
     //retornar a pagina que estamos
 
     @AuraEnabled(cacheable=true)
-    public static PageResultWrapper getProducts(String filter){
+    public static PageResultWrapper getProducts(String filter, Integer pageNumber){
 
-        Integer pageSizeInt = 10;
         String whereClausuleStr = '';
+        Integer pageSize        = 9;
+        Integer offset          = (pageNumber-1)*pageSize;
 
         //PriceBook2 pb2 = [SELECT Id FROM PriceBook2 WHERE IsStandard = true LIMIT 1];
         List<PriceBookEntry> pbeList = [SELECT Id, Product2Id FROM PriceBookEntry WHERE /*PriceBook2Id = :pb2.Id AND*/ PriceBook2.IsStandard  = true];
@@ -28,17 +29,16 @@ public with sharing class ProductController {
                 whereClausuleStr += ' WHERE Id In :idsProdsList ';
             }else{
                 whereClausuleStr += ' AND Id In :idsProdsList ';
-            }
-            
+            }            
         }
 
         system.debug('SELECT Id, Name, Price__c, DisplayUrl FROM Product2 '+whereClausuleStr);
 
         PageResultWrapper result    = new PageResultWrapper();
-        result.tamanhoDaPagina      = pageSizeInt;
+        result.tamanhoDaPagina      = pageSize;
         result.numeroDaPagina       = 0;
         result.totalItensPesquisa   = Database.countQuery('SELECT count() FROM Product2 '+whereClausuleStr);
-        result.produtos = Database.query('SELECT Id, Name, Price__c, DisplayUrl FROM Product2 '+whereClausuleStr);
+        result.produtos = Database.query('SELECT Id, Name, Price__c, DisplayUrl FROM Product2 '+whereClausuleStr+' LIMIT :pageSize OFFSET :offset ');
 
         system.debug('result '+result);
 
