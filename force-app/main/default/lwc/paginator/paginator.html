@@ -1,15 +1,21 @@
 <template>
-
     <lightning-layout vertical-align="center" class="slds-m-horizontal_x-small">
         <lightning-layout-item size="2">
-            <lightning-button-icon icon-name="utility:chevronleft"></lightning-button-icon>
+            <template if:false={isFirstPage}>
+                <lightning-button-icon 
+                    icon-name="utility:chevronleft"
+                    onclick={handlePrevious}></lightning-button-icon>
+            </template>
         </lightning-layout-item>
-        <lightning-layout-item size="8">
-            0 páginas de 100
+        <lightning-layout-item size="8" style="text-align: center;">
+            {totalItemCount} items - página {currentPageNumber} de {totalPages}
         </lightning-layout-item>
-        <lightning-layout-item size="2">
-            <lightning-button-icon icon-name="utility:chevronright"></lightning-button-icon>
+        <lightning-layout-item size="2" style="text-align: right;">
+            <template if:false={isLastPage}>
+                <lightning-button-icon 
+                    icon-name="utility:chevronright"
+                    onclick={handleNext}></lightning-button-icon>
+            </template>            
         </lightning-layout-item>
-    </lightning-layout>
-    
+    </lightning-layout>    
 </template>

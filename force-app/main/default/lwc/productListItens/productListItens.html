@@ -8,8 +8,7 @@
                             <lightning-layout-item 
                                     size="4"
                                     key={p.Id}
-                                    padding="arround-small">
-                                
+                                    padding="arround-small">                                                            
                                 <c-product-card
                                     product={p}
                                     onselected={handleProductSelected}
@@ -20,7 +19,13 @@
                         </template>
                     </lightning-layout>
                 </div>
-                <c-paginator></c-paginator>
+                <br><hr>
+                <c-paginator
+                    page-number={pageNumber}
+                    page-size={produtosObj.data.tamanhoDaPagina}
+                    total-item-count={produtosObj.data.totalItensPesquisa}
+                    onprevious={handlePreviousPage}
+                    onnext={handleNextPage}></c-paginator>
             </template>
         </div>
     </template>
