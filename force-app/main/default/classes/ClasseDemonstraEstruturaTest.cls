@@ -11,10 +11,12 @@ public with sharing class ClasseDemonstraEstruturaTest {
         oppObj.Amount       = 100;
         insert oppObj; 
 
-        Account acctOjt = new Account();
+        test.loadData(Account.sObjectType, 'AccountsTest');
+
+        /*Account acctOjt = new Account();
         acctOjt.Name = 'Test';
         acctOjt.CustomerPriority__c = 'ZZ';
-        insert acctOjt;    
+        insert acctOjt;*/
         
         Lead leadObj = new Lead();
         leadObj.LastName = 'Welter';
@@ -27,6 +29,8 @@ public with sharing class ClasseDemonstraEstruturaTest {
 
     @isTest
     static void testnomeDoMetodo(){
+
+        system.debug('Contas '+ [SELECT Name FROM Account]);
 
         Boolean verifyMethodBool = ClasseDemonstraEstrutura.nomeDoMetodo();
 
