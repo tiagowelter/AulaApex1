@@ -4,7 +4,7 @@
             <template if:true={produtosObj.data}>
                 <div class="c-container">
                     <lightning-layout multiple-rows>
-                        <template for:each={produtosObj.data.produtos} for:item="p">
+                        <template for:each={produtosObj.data.allDatas} for:item="p">
                             <lightning-layout-item 
                                     size="4"
                                     key={p.Id}

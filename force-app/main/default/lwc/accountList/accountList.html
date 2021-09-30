@@ -1,0 +1,32 @@
+<template>
+    <div class="slds-card slds-p-around_x-small">
+        <template if:true={accountsObj.data}>
+            <div class="c-container">
+                <lightning-layout multiple-rows>
+                    <template for:each={accountsObj.data.allDatas} for:item="p">
+                        <lightning-layout-item 
+                                size="4"
+                                key={p.Id}
+                                padding="arround-small">  
+                                
+                                {p.Name}
+                            <!--<c-product-card
+                                product={p}
+                                onselected={handleProductSelected}
+                                class="slds-m-arround_x-small"
+                            ></c-product-card>-->
+
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+            <br><hr>
+            <c-paginator
+                page-number={pageNumber}
+                page-size={accountsObj.data.tamanhoDaPagina}
+                total-item-count={accountsObj.data.totalItensPesquisa}
+                onprevious={handlePreviousPage}
+                onnext={handleNextPage}></c-paginator>
+        </template>
+    </div>
+</template>

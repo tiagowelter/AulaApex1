@@ -38,7 +38,7 @@ public with sharing class ProductController {
         result.tamanhoDaPagina      = pageSize;
         result.numeroDaPagina       = 0;
         result.totalItensPesquisa   = Database.countQuery('SELECT count() FROM Product2 '+whereClausuleStr);
-        result.produtos = Database.query('SELECT Id, Name, Price__c, DisplayUrl FROM Product2 '+whereClausuleStr+' LIMIT :pageSize OFFSET :offset ');
+        result.allDatas = Database.query('SELECT Id, Name, Price__c, DisplayUrl FROM Product2 '+whereClausuleStr+' LIMIT :pageSize OFFSET :offset ');
 
         system.debug('result '+result);
 
