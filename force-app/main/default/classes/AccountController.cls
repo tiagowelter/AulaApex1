@@ -17,7 +17,7 @@ public class AccountController {
     public static PageResultWrapper getAccountsSearch(String filter, Integer pageNumber){
 
         String whereClausuleStr = '';
-        Integer pageSize        = 9;
+        Integer pageSize        = 6;
         Integer offset          = (pageNumber-1)*pageSize;
 
         if(String.IsNotBlank(filter)){

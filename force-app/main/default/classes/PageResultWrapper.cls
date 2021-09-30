@@ -1,4 +1,4 @@
-public class PageResultWrapper {
+public class PageResultWrapper{
     
     @AuraEnabled
     public integer numeroDaPagina {get;set;} //página que estamos atualmente
