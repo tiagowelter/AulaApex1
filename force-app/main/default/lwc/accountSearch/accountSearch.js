@@ -11,7 +11,7 @@ export default class AccountSearch extends LightningElement {
 
     handleSearch(event){
         this.filter = event.target.value;
-        this.fireFilterProds();
+        this.fireFilterAccounts();
     }
 
     fireFilterAccounts(){

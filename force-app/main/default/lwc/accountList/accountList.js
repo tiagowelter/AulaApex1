@@ -32,5 +32,9 @@ export default class AccountList extends LightningElement {
         this.pageNumber = this.pageNumber + 1;
     }
 
+    handleAccountSelected(event){
+        console.log('capturou a conta', event.detail);
+        fireEvent(this.pageRef, 'accountSelected', event.detail);
+    }
 
 }
