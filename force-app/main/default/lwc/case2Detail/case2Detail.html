@@ -2,7 +2,13 @@
 
     <lightning-card class="slds-p-top_medium slds-p-left_medium">
 
-        <p style="margin-left: 26px;"><b>Cliente:</b> {accountName}</p>
+        <template if:true={isClientBlank}>
+            <p style="margin-left: 26px;"><b>Cliente: <font style="color: red;">SELECIONE O CLIENTE!</font></b></p>
+        </template>
+
+        <template if:false={isClientBlank}>
+            <p style="margin-left: 26px;"><b>Cliente:</b> {accountName}</p>
+        </template>
 
         <div class="slds-m-arround_medium slds-p-top_medium slds-p-left_medium" style="margin-bottom: 30px;">
 
@@ -16,7 +22,13 @@
                 type="date"
                 name="caseDate"
                 label="Data da ocorrência"
-                onchange={handleCaseDate}></lightning-input>    
+                onchange={handleCaseDate}></lightning-input>  
+            
+            <lightning-textarea 
+                    name="caseDescription"
+                    onchange={handleDescription}
+                    placeholder="Digite aqui o  problema do cliente..."></lightning-textarea>
+                           
         </div>
 
         <template if:true={isSaveCase}>
@@ -24,10 +36,16 @@
                 <br>
                 <lightning-button
                     variant="brand"
-                    label="Criar chamado"></lightning-button>
+                    label="Criar chamado"
+                    onclick={createNewCase}></lightning-button>
             </div>
         </template>
 
+        <template if:true={getErrorMessage}>
+            <br/><br/>
+            <c-error-message message={errorMessage}></c-error-message>
+        </template>  
+        
     </lightning-card>
     
 </template>
