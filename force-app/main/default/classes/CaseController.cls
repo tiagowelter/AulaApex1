@@ -13,6 +13,15 @@ public with sharing class CaseController {
 
         return caseObj;
 
+    }    
+
+    @AuraEnabled
+    public static List<Case> findCases(){
+
+        List<Case> caseList = new List<Case>([SELECT Id, Subject, CreatedDate FROM Case WHERE Origin = 'Aplicativo']);
+
+        return caseList;
+
     }
 
 }

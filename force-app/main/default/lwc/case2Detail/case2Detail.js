@@ -25,7 +25,7 @@ export default class Case2Detail extends NavigationMixin(LightningElement) {
         this.account.push( {...JSON.parse(accountPar)} );
         console.log('this.account', this.account[0].nome);
         this.accountName = this.account[0].nome;
-        this.accountId = this.account[0].id; 
+        this.accountId = this.account[0].id;
     }
 
     handleCaseName(event){

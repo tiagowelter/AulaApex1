@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Lista de chamados" icon-name="doctype:audio">
+        
+        <div class="slds-m-arround_medium" style="text-align: center;">
+            <lightning-button variant="neutral" label="Abrir Chamado" onclick={executeNewCase}></lightning-button>
+        </div>
+        <br><br>
+
+        <lightning-datatable
+            class="datatable"
+            data={data}
+            columns={columns}
+            key-field="Subject"
+            hide-checkbox-column="true"
+            onsort={handleSort}
+            sorted-by={sortedField}
+            sorted-direction={sortDirection}></lightning-datatable>
+    </lightning-card>
+</template>
