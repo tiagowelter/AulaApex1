@@ -4,7 +4,7 @@ trigger AccountTrigger on Account (after insert,after update){
     //Trigger.New //Lista com os valores novos
     //Trigger.Old // Lista com os valores antigos - só no update
 
-    if(Trigger.isInsert){
+    if(Trigger.isInsert && Trigger.isAfter){
 
         List<Task> taskList = new List<Task>();
         
@@ -17,8 +17,6 @@ trigger AccountTrigger on Account (after insert,after update){
             taskList.add(taskObj);
 
         }
-
-        
 
     }
 

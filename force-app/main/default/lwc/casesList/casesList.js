@@ -52,10 +52,17 @@ export default class CasesList extends NavigationMixin(LightningElement) {
     
     executeNewCase(){
         this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'Account',
+                actionName: 'new'
+            },
+        });        
+        /*this[NavigationMixin.Navigate]({
             type : 'standard__navItemPage',
             attributes: {
                 apiName : 'Cases_Creator'
             }
-        });
+        });*/
     }
 }
